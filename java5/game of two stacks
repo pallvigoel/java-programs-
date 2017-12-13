@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    int g;
+    cin >> g;
+    for(int a0 = 0; a0 < g; a0++){
+        int n;
+        int m;
+        int x;
+        cin >> n >> m >> x;
+        int u, v;
+        int a[n];
+        for(int i=0;i<n;i++)
+            cin>>a[i];
+        
+       int b[m];
+        for(int i=0;i<m;i++)
+            cin>>b[i];
+        
+        int l=0, j;
+        int sum =0;
+        while(l<n && (sum + a[l])<=x )
+        {
+            sum = sum + a[l];
+            l++;            
+        }
+        int max = l;
+        int sum1 = sum;
+        for(j=0;j<m;j++)            
+        {
+           if((sum + b[j])> x && b[j]> sum1) 
+               break;
+
+           sum = sum + b[j];
+            
+            while(sum>x && sum1>0)
+            {
+                l = l-1;
+                sum = sum - a[l];
+                sum1 = sum1 -a[l];
+            }
+            
+            if(sum>x)
+                break;
+             max = max> l+j+1 ? max: l+j+1;
+
+        }
+        
+       
+        
+        
+
+        cout<<max<<endl;
+    }
+
+}
